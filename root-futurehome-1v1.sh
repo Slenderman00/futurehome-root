@@ -60,6 +60,13 @@ pass "Successfully modified /mnt/etc/ssh/sshd_config to allow root login"
 ln -s /lib/systemd/system/ssh.service /mnt/etc/systemd/system/multi-user.target.wants/sshd.service || fail "Failed to create symlink for sshd service"
 pass "Successfully created symlink for sshd service"
 
+#append legacy repos to apt sources
+echo "deb http://legacy.raspbian.org/raspbian/ stretch main contrib non-free rpi" >> /mnt/etc/apt/sources.list || fail "Failed to append legacy repos to /mnt/etc/apt/sources.list"
+pass "Successfully appended legacy repos to /mnt/etc/apt/sources.list"
+
+echo "deb-src http://legacy.raspbian.org/raspbian/ stretch main contrib non-free rpi" >> /mnt/etc/apt/sources.list || fail "Failed to append deb-src legacy repos to /mnt/etc/apt/sources.list"
+pass "Successfully appended deb-src legacy repos to /mnt/etc/apt/sources.list"
+
 sleep 1
 
 #unmount the partition
