@@ -28,7 +28,7 @@ detect_rpi_rootfs_partition() {
 
 info "Rooting futurehome cube-1v1"
 
-usbboot || rpiusbboot
+rpiboot || rpiusbboot
 if [ $? -ne 0 ]; then
     fail "Failed to boot into USB mode, make sure the device is connected, powered, and the reset button has been pressed."
 fi
